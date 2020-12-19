@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="model.Grade">
+    <resultMap type="Grade" id="grade">
+        <result column="COUR_ID" property="courseId"/>
+        <result column="COUR_NAME" property="courseName"/>
+        <result column="CLASS_ID" property="classId"/>
+        <result column="STU_ID" property="studentId"/>
+        <result column="STU_NAME" property="studentName"/>
+        <result column="GRADE" property="grade"/>
+    </resultMap>
+
+    <select id="stuGetOneGrade" parameterType="Grade" resultMap="grade">
+        call proc_stuGetOneGrade(#{courseId},#{studentId})
+	</select>
+
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <package name="model"/>
+    </typeAliases>
+    <!--加载映射文件-->
+    <mappers>
+        <mapper resource="model/UserMapper.xml"/>
+        <mapper resource="model/StudentMapper.xml"/>
+        <mapper resource="model/DepartMapper.xml"/>
+        <mapper resource="model/GradeMapper.xml"/>
+    </mappers>
+</configuration>

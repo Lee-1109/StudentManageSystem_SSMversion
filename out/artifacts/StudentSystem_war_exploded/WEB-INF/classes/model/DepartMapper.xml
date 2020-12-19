@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="model.Depart">
+
+    <resultMap  id="deptByClass" type="model.Depart">
+        <result column="INS_ID" property="insId"/>
+        <result column="INS_NAME" property="insName"/>
+        <result column="MAJOR_ID" property="majorId"/>
+        <result column="MAJOR_NAME" property="majorName"/>
+        <result column="CLASS_ID" property="classId"/>
+    </resultMap>
+    <select id="fromInsMaj" resultType="Depart">
+        select * from v_ins_maj_cla
+    </select>
+    <!-- 根据班级编号找到部门的详细信息 -->
+    <select id="fromInsMajByClassId" parameterType="String" resultMap="deptByClass">
+        call proc_GetClassInsMajor(#{classId})
+	</select>
+
+
+</mapper>
