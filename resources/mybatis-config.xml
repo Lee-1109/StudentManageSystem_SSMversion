@@ -12,5 +12,7 @@
         <mapper resource="model/StudentMapper.xml"/>
         <mapper resource="model/DepartMapper.xml"/>
         <mapper resource="model/GradeMapper.xml"/>
+        <mapper resource="model/TeacherMapper.xml"/>
+        <mapper resource="model/CourseMapper.xml"/>
     </mappers>
 </configuration>

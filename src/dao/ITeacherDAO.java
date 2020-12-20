@@ -12,5 +12,9 @@ import java.util.List;
  */
 
 public interface ITeacherDAO {
-    List<Teacher> getAllTeacher();
+    boolean add(Teacher teacher);
+    boolean update(Teacher teacher);
+    List<Teacher> selectAllTeacher();
+    boolean delete(String teacherId);
+    List<Teacher> findByCondition(String condition);
 }

@@ -13,15 +13,24 @@ import java.util.List;
  */
 
 public class GradeDaoImpl extends SqlSessionDaoSupport implements IGradeDAO {
+
+
     @Override
-    public Grade stuGetOneGradeById(Grade grade) {
-        Grade result=null;
-        result = this.getSqlSession().selectOne("model.Grade.stuGetOneGrade",grade);
-        return  result;
+    public List<Grade> teacherSelectGradeListByCourseId(String courseId) {
+        return this.getSqlSession().selectList("model.Grade.fromGrade",courseId);
     }
 
     @Override
-    public List<Grade> teaGetAllStuGrade(String couId) {
-        return null;
+    public List<Grade> studentSelectGradeListByStudentId(String studentId) {
+        return this.getSqlSession().selectList("model.Grade.studentFromGrade",studentId);
+
     }
+
+    @Override
+    public Grade stuGetOneGradeById(Grade grade) {
+        System.out.println("===junjun this is dao===:"+grade.getStudentId()+grade.getCourseId());
+        return this.getSqlSession().selectOne("model.Grade.selectOne",grade);
+    }
+
+
 }

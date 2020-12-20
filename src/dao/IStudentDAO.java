@@ -16,7 +16,7 @@ public interface IStudentDAO {
     List<Student> selectAllStudent();
     //实现分页查询学生 数据库limit
     List<Student> selectStudentByPage(HashMap<String,Integer> map);
-
+    List<Student> findByCondition(String condition);
     boolean updateStudent(Student student);
     //按照ID删除学生
     boolean deleteOneStudent(String studentId);

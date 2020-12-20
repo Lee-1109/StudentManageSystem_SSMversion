@@ -25,6 +25,11 @@ public class StudentDao extends SqlSessionDaoSupport implements IStudentDAO {
     }
 
     @Override
+    public List<Student> findByCondition(String condition) {
+        return this.getSqlSession().selectList("model.Student.findByCondition","%"+condition+"%");
+    }
+
+    @Override
     public boolean updateStudent(Student student) {
         //更新成功返回true 否则返回false
         return this.getSqlSession().update("model.Student.updateOneStudent", student) == 1;

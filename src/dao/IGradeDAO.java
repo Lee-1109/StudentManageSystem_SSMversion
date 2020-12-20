@@ -11,8 +11,12 @@ import java.util.List;
  */
 
 public interface IGradeDAO {
-    //通过课程号、学号获取学生成绩信息
-    Grade stuGetOneGradeById(Grade grade);
     //通过课程号获取所有学生的成绩信息
-    List<Grade> teaGetAllStuGrade(String couId);
+    List<Grade> teacherSelectGradeListByCourseId(String couId);
+    //学生通过学号获取所有课程成绩
+    List<Grade> studentSelectGradeListByStudentId(String studentId);
+
+    //通过课程号、学号获取 一位学生一门课程的成绩信息
+    Grade stuGetOneGradeById(Grade grade);
+
 }

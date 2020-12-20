@@ -38,6 +38,9 @@
     <bean id="teacherDao" class="dao.impl.TeacherDao">
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
+    <bean id="courseDao" class="dao.impl.CourseDaoImpl">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
 
     <bean id="loginDao" class="dao.impl.LoginDaoImpl">
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
@@ -53,15 +56,21 @@
     <bean id="adminService" class="service.impl.AdminService">
         <property name="studentDAO" ref="studentDao"/>
         <property name="teacherDAO" ref="teacherDao"/>
+        <property name="courseDAO" ref="courseDao"/>
     </bean>
-
+    <!--学生服务层-->
+    <bean id="studentService" class="service.impl.StudentServiceImpl">
+        <property name="courseDAO" ref="courseDao"/>
+        <property name="gradeDAO" ref="gradeDao"/>
+    </bean>
+    <!--教师服务层-->
+    <bean id="teacherService" class="service.impl.TeacherServiceImpl">
+        <property name="courseDAO" ref="courseDao"/>
+    </bean>
     <bean id="loginService" class="service.impl.LoginServiceImpl">
         <property name="loginDao" ref="loginDao"/>
     </bean>
     <bean id="departService" class="service.impl.DepartServiceImpl">
         <property name="departDao" ref="departDao"/>
-    </bean>
-    <bean id="gradeService" class="service.impl.GradeServiceImpl">
-        <property name="gradeDAO" ref="gradeDao"/>
     </bean>
 </beans>

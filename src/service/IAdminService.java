@@ -13,18 +13,30 @@ import java.util.List;
  */
 
 public interface IAdminService {
-    List<Teacher> getAllTeacher();
-    List<Student> getAllStudent();
-    List<Student> getStudentByPage(int page);
-    List<Course> getAllCourse();
+    List<Teacher> listTeacher();
+    List<Student> listStudent();
+    List<Student> listStudentByPage(int page);
+
+
+    //开设专业课程
+    boolean addOneMajorCourse(String majorId,String courseId);
     boolean addTeacher(Teacher teacher);
     boolean addStudent(Student student);
     boolean addCourse(Course course);
     boolean updateTeacher(Teacher teacher);
     boolean updateStudent(Student student);
     boolean updateCourse(Course course);
-    boolean deleteTeacher(Teacher teacher);
+    boolean deleteTeacher(String teacherId);
     boolean deleteStudent(String studentId);
-    boolean deleteCourse(Course course);
+    List<Teacher> findTeacherByCondition(String condition);
+    List<Student> findStudentByCondition(String condition);
+    //管理员删除课程
+    boolean deleteCourse(String courseId);
+    //管理员查询所有课程
+    List<Course> selectCourseList();
+    //通过开设专业查询课程
+    List<Course> selectCourseListByMajorId(String majorId);
+    //通过学生学号查询该学生所有课程 -> 用于查询课程表
+    List<Course> selectCourseListByStudentId(String studentId);
 
 }
