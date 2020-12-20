@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="model.Teacher">
+    <resultMap type="Teacher" id="teachers" >
+        <result column="INS_ID" property="insId"/>
+        <result column="INS_NAME" property="insName"/>
+        <result column="MAJOR_ID" property="majorId"/>
+        <result column="MAJOR_NAME" property="majorName"/>
+        <result column="TEA_ID" property="teacherId"/>
+        <result column="TEA_NAME" property="teacherName"/>
+        <result column="TEA_GENDER" property="gender"/>
+        <result column="TEA_AGE" property="age"/>
+    </resultMap>
+
+    <select id="fromTeacher" resultMap="teachers">
+       select * from v_teacher
+	</select>
+    <select id="fromTeacherByCondition" parameterType="String" resultMap="teachers">
+        select * from v_teacher v where v.MAJOR_NAME like #{condition} or v.TEA_ID like #{condition} or v.TEA_NAME like #{condition}
+        or v.INS_NAME like  #{condition} or v.TEA_GENDER like #{condition} or v.MAJOR_ID like #{condition}
+    </select>
+
+    <insert id="insertTeacher" parameterType="Teacher">
+        insert into teacher values(#{teacherId},#{teacherName},#{majorId},#{gender},#{age})
+    </insert>
+    <delete id="deleteTeacher" parameterType="String">
+        delete from teacher where TEA_ID=#{teacherId}
+    </delete>
+
+</mapper>

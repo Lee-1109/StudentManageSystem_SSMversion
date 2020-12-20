@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="model.Course">
+    <resultMap type="Course" id="course">
+        <id column="COUR_ID" property="courseId"/>
+        <result column="COUR_NAME" property="courseName"/>
+        <result column="MAJOR_ID" property="majorId"/>
+        <result column="TEA_ID" property="teacherId"/>
+        <result column="COUR_PERIOD" property="period"/>
+        <result column="COUR_CREDIT" property="credit"/>
+    </resultMap>
+
+    <select id="fromCourse" resultMap="course">
+       select COUR_ID,COUR_NAME,MAJOR_ID,TEA_ID,COUR_PERIOD,COUR_CREDIT from course
+	</select>
+    <select id="selectCourseName" parameterType="String" resultMap="course" >
+        select * from course where COUR_ID=#{courseId}
+    </select>
+    <select id="selectCourseIdByName" parameterType="String" resultMap="course">
+        select * from course where COUR_NAME=#{courseName}
+    </select>
+
+    <select id="fromEnterCourse" parameterType="String" resultMap="course">
+        select * from course c where TEA_ID=#{teacherId} and c.COUR_ID in
+            (select COUR_ID from v_grade)
+    </select>
+    <select id="fromNotEnterCourse" parameterType="String" resultMap="course">
+        select * from course c where TEA_ID=#{teacherId} and c.COUR_ID not in
+             (select COUR_ID from v_grade)
+    </select>
+    <insert id="insertCourse" parameterType="Course">
+        insert into course values (#{courseId},#{courseName},#{majorId},#{teacherId},#{period},#{credit})
+	</insert>
+    <update id="updateCourse" parameterType="Course">
+        call proc_updateCourse(#{courseId},#{courseName},#{majorId},#{teacherId},#{period},#{credit})
+    </update>
+</mapper>
