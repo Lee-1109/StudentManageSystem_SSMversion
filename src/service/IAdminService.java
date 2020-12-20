@@ -30,10 +30,11 @@ public interface IAdminService {
     boolean deleteStudent(String studentId);
     List<Teacher> findTeacherByCondition(String condition);
     List<Student> findStudentByCondition(String condition);
+    List<Course> findCourseByCondition(String condition);
     //管理员删除课程
     boolean deleteCourse(String courseId);
     //管理员查询所有课程
-    List<Course> selectCourseList();
+    List<Course> listCourse();
     //通过开设专业查询课程
     List<Course> selectCourseListByMajorId(String majorId);
     //通过学生学号查询该学生所有课程 -> 用于查询课程表

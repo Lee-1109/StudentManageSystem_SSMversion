@@ -13,26 +13,47 @@
         <result column="COUR_CREDIT" property="credit"/>
     </resultMap>
 
-    <select id="fromCourse" resultMap="course">
-       select COUR_ID,COUR_NAME,MAJOR_ID,TEA_ID,COUR_PERIOD,COUR_CREDIT from course
+    <resultMap type="Course" id="v_course">
+        <id column="COUR_ID" property="courseId"/>
+        <result column="COUR_NAME" property="courseName"/>
+        <result column="MAJOR_ID" property="majorId"/>
+        <result column="MAJOR_NAME" property="majorName"/>
+        <result column="TEA_ID" property="teacherId"/>
+        <result column="TEA_NAME" property="teacherName"/>
+        <result column="COUR_PERIOD" property="period"/>
+        <result column="COUR_CREDIT" property="credit"/>
+    </resultMap>
+
+    <select id="fromCourse" resultMap="v_course">
+       select COUR_ID,COUR_NAME,MAJOR_ID,MAJOR_NAME,TEA_ID,TEA_NAME,COUR_PERIOD,COUR_CREDIT
+       from v_course v
 	</select>
     <select id="selectCourseName" parameterType="String" resultMap="course" >
-        select * from course where COUR_ID=#{courseId}
+        select c.COUR_ID, COUR_NAME, MAJOR_ID, TEA_ID, COUR_PERIOD, COUR_CREDIT
+        from course c where c.COUR_ID=#{courseId}
     </select>
     <select id="selectCourseIdByName" parameterType="String" resultMap="course">
-        select * from course where COUR_NAME=#{courseName}
+        select c.COUR_ID, COUR_NAME, MAJOR_ID, TEA_ID, COUR_PERIOD, COUR_CREDIT
+        from course c where COUR_NAME=#{courseName}
     </select>
 
     <select id="fromEnterCourse" parameterType="String" resultMap="course">
-        select * from course c where TEA_ID=#{teacherId} and c.COUR_ID in
+        select c.COUR_ID, COUR_NAME, MAJOR_ID, TEA_ID, COUR_PERIOD, COUR_CREDIT
+        from course c where TEA_ID=#{teacherId} and c.COUR_ID in
             (select COUR_ID from v_grade)
     </select>
     <select id="fromNotEnterCourse" parameterType="String" resultMap="course">
-        select * from course c where TEA_ID=#{teacherId} and c.COUR_ID not in
-             (select COUR_ID from v_grade)
+        select c.COUR_ID, COUR_NAME, MAJOR_ID, TEA_ID, COUR_PERIOD, COUR_CREDIT
+        from course c where TEA_ID=#{teacherId} and c.COUR_ID not in
+        (select COUR_ID from v_grade)
+    </select>
+    <select id="findByCondition" parameterType="String" resultMap="v_course">
+        select * from v_course v where v.COUR_NAME like #{condition} or v.COUR_ID like #{condition}
+        or v.MAJOR_NAME like #{condition}
     </select>
     <insert id="insertCourse" parameterType="Course">
-        insert into course values (#{courseId},#{courseName},#{majorId},#{teacherId},#{period},#{credit})
+        insert into course
+        values (#{courseId},#{courseName},#{majorId},#{teacherId},#{period},#{credit})
 	</insert>
     <update id="updateCourse" parameterType="Course">
         call proc_updateCourse(#{courseId},#{courseName},#{majorId},#{teacherId},#{period},#{credit})

@@ -11,9 +11,10 @@
     <title>Title</title>
 </head>
 <body>
+<h3>当前用户:${nowUser},老师你好!欢迎使用南昌航空大学教务管理系统<a href="logoutController">【注销登陆】</a><hr></h3>
 <div class="container">
     <ul>
-        <li><a href="teacherListCourse">任教课程成绩录入系统</a></li>
+        <li><a href="teacherListCourse">任教课程成绩录入系统</li>
         <li><a href="#">已收留言</a></li>
         <li><a href="#">公告</a></li>
     </ul>

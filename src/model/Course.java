@@ -10,7 +10,9 @@ public class Course {
     private String courseId;
     private String courseName;
     private String majorId;
+    private String majorName;
     private String teacherId;
+    private String teacherName;
     private int period;
     private double credit;
 
@@ -36,6 +38,22 @@ public class Course {
 
     public String getMajorId() {
         return majorId;
+    }
+
+    public void setMajorName(String majorName) {
+        this.majorName = majorName;
+    }
+
+    public String getMajorName() {
+        return majorName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
     }
 
     public void setTeacherId(String teacherId) {

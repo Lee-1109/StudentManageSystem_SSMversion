@@ -53,5 +53,10 @@
         </c:forEach>
     </table>
 </c:if>
+<a href="teacherMain.jsp">返回主页</a>
+<a href="">首页</a>
+<a href="">上一页</a>
+<a href="">下一页</a>
+<a href="">尾页</a>
 </body>
 </html>

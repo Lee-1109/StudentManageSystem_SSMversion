@@ -25,10 +25,15 @@
 </form>
 <table>
     <tr>
+        <td>学院编号</td><td>学院名称</td><td>专业编号</td><td>专业名称</td>
         <td>班级</td><td>学号</td><td>姓名</td><td>年龄</td><td>性别</td><td colspan="2">操作</td>
     </tr>
 <c:forEach items="${studentList}" var="student">
     <tr>
+        <td>${student.insId}</td>
+        <td>${student.insName}</td>
+        <td>${student.majorId}</td>
+        <td>${student.majorName}</td>
         <td>${student.classes}</td>
         <td>${student.id}</td>
         <td>${student.name}</td>

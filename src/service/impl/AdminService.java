@@ -86,7 +86,7 @@ public class AdminService implements IAdminService {
 
     @Override
     public boolean addCourse(Course course) {
-        return false;
+        return courseDAO.add(course);
     }
 
     @Override
@@ -112,7 +112,7 @@ public class AdminService implements IAdminService {
 
     @Override
     public boolean updateCourse(Course course) {
-        return courseDAO.updateCourse(course);
+        return courseDAO.update(course);
     }
 
     @Override
@@ -146,13 +146,19 @@ public class AdminService implements IAdminService {
     }
 
     @Override
+    public List<Course> findCourseByCondition(String condition) {
+        if(condition==null) condition="";
+        return courseDAO.findByCondition(condition);
+    }
+
+    @Override
     public boolean deleteCourse(String courseId) {
         return false;
     }
 
     @Override
-    public List<Course> selectCourseList() {
-        return courseDAO.selectCourseList();
+    public List<Course> listCourse() {
+        return courseDAO.selectList();
     }
 
     @Override

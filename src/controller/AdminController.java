@@ -1,5 +1,6 @@
 package controller;
 
+import model.Course;
 import model.Student;
 import model.Teacher;
 import org.springframework.stereotype.Controller;
@@ -79,6 +80,7 @@ public class AdminController {
         else
             return "error";
     }
+
     @RequestMapping("/findTeacherByCondition")
     public String selectTeacher(String condition,HashMap<String,Object> map){
         List<Teacher> teacherList = null;
@@ -106,6 +108,34 @@ public class AdminController {
         }
         else
             return "error";
+    }
+
+    @RequestMapping("/listCourse")
+    public String listCourse(HashMap<String,Object> map){
+        List<Course> courseList = null;
+        courseList = adminService.listCourse();
+        if(null != courseList){
+            map.put("courseList",courseList);
+        }
+        return "listCourse";
+    }
+    @RequestMapping("/addCourseController")
+    public String addCourse(Course course){
+        if(adminService.addCourse(course))
+        return "redirect:listCourse";
+        else return "error";
+
+    }
+
+    @RequestMapping("/findCourseByCondition")
+    public String selectCourseByCondition(String condition,HashMap<String,Object> map){
+        List<Course> courseList = null;
+        courseList = adminService.findCourseByCondition(condition);
+        if(null  != courseList){
+            map.put("courseList",courseList);
+            return "listCourse";
+        }
+        return "error";
     }
 
 }

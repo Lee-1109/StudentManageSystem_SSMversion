@@ -12,15 +12,17 @@ import java.util.List;
 
 public interface ICourseDAO {
     //管理员添加课程
-    boolean addCourse(Course course);
+    boolean add(Course course);
     //管理员更新课程
-    boolean updateCourse(Course course);
+    boolean update(Course course);
     //管理员删除课程
-    boolean deleteCourse(String courseId);
+    boolean delete(String courseId);
     //管理员查询所有课程
-    List<Course> selectCourseList();
+    List<Course> selectList();
     //通过开设专业查询课程
-    List<Course> selectCourseListByMajorId(String majorId);
+    List<Course> selectListByMajorId(String majorId);
+    //条件查询
+    List<Course> findByCondition(String condition);
 
     //开设专业课程
     boolean addOneMajorCourse(String majorId,String courseId);
