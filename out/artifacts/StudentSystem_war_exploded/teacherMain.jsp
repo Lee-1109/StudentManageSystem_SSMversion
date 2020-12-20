@@ -13,8 +13,7 @@
 <body>
 <div class="container">
     <ul>
-        <li><a href="#">个人课表查询</a></li>
-        <li><a href="#">任教课程成绩录入系统</a></li>
+        <li><a href="teacherListCourse">任教课程成绩录入系统</a></li>
         <li><a href="#">已收留言</a></li>
         <li><a href="#">公告</a></li>
     </ul>

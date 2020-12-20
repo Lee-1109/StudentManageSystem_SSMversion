@@ -13,8 +13,12 @@
         <result column="GRADE" property="grade"/>
     </resultMap>
 
-    <select id="stuGetOneGrade" parameterType="Grade" resultMap="grade">
-        call proc_stuGetOneGrade(#{courseId},#{studentId})
+    <select id="selectOne" parameterType="Grade" resultMap="grade">
+        call proc_stuGetOneCourseGrade(#{courseId},#{studentId})
 	</select>
+
+    <select id="studentFromGrade" parameterType="String" resultMap="grade">
+        call proc_stuGetAllCourseGrade(#{studentId})
+    </select>
 
 </mapper>

@@ -19,6 +19,10 @@
     <select id="selectStudentByPage" parameterType="Map" resultMap="students">
         select * from student limit #{startIndex},#{pageSize}
     </select>
+    <select id="findByCondition" parameterType="String" resultMap="students">
+        select * from student s where s.STU_NAME like #{condition} or s.CLASS_ID like #{condition} or s.STU_ID like #{condition}
+        or s.STU_GENDER like #{condition}
+    </select>
 
     <update id="updateOneStudent" parameterType="Student">
         update student set STU_NAME=#{name},STU_AGE=#{age},CLASS_ID=#{classes} where STU_ID=#{id}

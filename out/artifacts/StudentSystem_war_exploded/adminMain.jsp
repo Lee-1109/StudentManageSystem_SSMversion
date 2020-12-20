@@ -11,12 +11,12 @@
     <title>Title</title>
 </head>
 <body>
-当前用户:${useName},管理员你好!欢迎使用南昌航空大学教务管理系统<hr>
+当前用户:${nowUser},管理员你好!欢迎使用南昌航空大学教务管理系统<hr>
 <div class="container">
     <ul>
         <li><a href="adminFindClass.jsp">部门组织管理</a></li>
         <li><a href="adminListStudent">学生信息管理</a></li>
-        <li><a href="#">教师信息管理</a></li>
+        <li><a href="listTeacher">教师信息管理</a></li>
         <li><a href="#">课程信息管理</a></li>
         <li><a href="#">留言系统</a></li>
         <li><a href="#">公告发布</a></li>
