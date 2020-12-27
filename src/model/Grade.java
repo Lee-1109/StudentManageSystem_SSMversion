@@ -1,5 +1,9 @@
 package model;
 
+import lombok.Data;
+
+import java.io.Serializable;
+
 /**
  * @Author 南昌航空大学 18045221-李扬
  * @Date 2020/12/19 12:45
@@ -9,17 +13,41 @@ package model;
 /*
  * 对应v_grade
  */
-public class Grade {
+
+public class Grade implements Serializable {
     private String courseId;
     private String courseName;
     private String classId;
+    private String teacherId;
     private String studentId;
     private String studentName;
     private double grade;
 
+    public Grade(){}
     public Grade(String courseId,String studentId){
         this.courseId=courseId;
         this.studentId=studentId;
+    }
+
+    public Grade(String courseId,String studentId,double grade){
+        this.courseId=courseId;
+        this.studentId=studentId;
+        this.grade=grade;
+    }
+    public Grade(String courseId,String classId,String teacherId){
+        this.courseId = courseId;
+        this.classId = classId;
+        this.teacherId=teacherId;
+    }
+
+    public Grade(String courseId, String courseName, String classId, String teacherId, String studentId, String studentName, double grade) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.classId = classId;
+        this.teacherId = teacherId;
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.grade = grade;
     }
 
 
@@ -45,6 +73,14 @@ public class Grade {
 
     public String getClassId() {
         return classId;
+    }
+
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
+    }
+
+    public String getTeacherId() {
+        return teacherId;
     }
 
     public void setStudentId(String studentId) {

@@ -11,6 +11,9 @@ import java.util.List;
  */
 public interface IDepartDAO {
     //获取全部部门信息
-    List<Depart> getAllDepartment();
+    List<Depart> selectList();
+    //条件查询部门信息
+    List<Depart> selectListByCondition(String condition);
+
     Depart getDepartDetailByClassId(String classId);
 }

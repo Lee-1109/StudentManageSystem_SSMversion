@@ -15,6 +15,11 @@ import java.util.List;
 
 public class StudentDao extends SqlSessionDaoSupport implements IStudentDAO {
     @Override
+    public boolean add(Student student) {
+        return this.getSqlSession().insert("model.Student.addStudent",student) == 1;
+    }
+
+    @Override
     public List<Student> selectAllStudent() {
         return this.getSqlSession().selectList("model.Student.fromStudents");
     }

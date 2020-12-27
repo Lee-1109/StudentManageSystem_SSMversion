@@ -1,0 +1,2 @@
+#n:proc_updateCourse
+#i:(varchar(255),varchar(255),varchar(255),int,double)

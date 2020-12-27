@@ -12,6 +12,7 @@
           <element id="library" level="project" name="mysql-connector-java-8.0.21" />
           <element id="library" level="project" name="mybatis-3.5.2" />
           <element id="library" level="project" name="WebLib" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.16/lombok-1.18.16.jar" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="StudentSystem/web/Web" />

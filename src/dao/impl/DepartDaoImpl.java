@@ -14,15 +14,29 @@ import java.util.List;
 
 
 public class DepartDaoImpl extends SqlSessionDaoSupport implements IDepartDAO {
-
+    /**
+     * 查询所有部门
+     * @return 部门信息列表
+     */
     @Override
-    public List<Depart> getAllDepartment() {
+    public List<Depart> selectList() {
         try {
           return this.getSqlSession().selectList("model.Depart.fromInsMaj");
         }catch (Exception e){
             e.printStackTrace();
+            return null;
         }
-        return null;
+
+    }
+
+    /**
+     * 查询一个部门详情
+     * @param condition 查询条件
+     * @return 符合条件的部门列表
+     */
+    @Override
+    public List<Depart> selectListByCondition(String condition) {
+        return this.getSqlSession().selectList("model.Depart.selectByCondition",condition);
     }
 
     @Override

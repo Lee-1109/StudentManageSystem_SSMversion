@@ -13,6 +13,16 @@
         <result column="GRADE" property="grade"/>
     </resultMap>
 
+    <resultMap type="Grade" id="v_grade">
+        <result column="COUR_ID" property="courseId"/>
+        <result column="COUR_NAME" property="courseName"/>
+        <result column="TEA_ID" property="teacherId"/>
+        <result column="CLASS_ID" property="classId"/>
+        <result column="STU_ID" property="studentId"/>
+        <result column="STU_NAME" property="studentName"/>
+        <result column="GRADE" property="grade"/>
+    </resultMap>
+
     <select id="selectOne" parameterType="Grade" resultMap="grade">
         call proc_stuGetOneCourseGrade(#{courseId},#{studentId})
 	</select>
@@ -20,5 +30,15 @@
     <select id="studentFromGrade" parameterType="String" resultMap="grade">
         call proc_stuGetAllCourseGrade(#{studentId})
     </select>
+    <select id="fromGrade" parameterType="Grade" resultMap="v_grade">
+        select * from v_grade v where TEA_ID=#{teacherId} AND V.CLASS_ID=#{classId} and v.COUR_ID=#{courseId}
+    </select>
 
+    <update id="updateOne" parameterType="Grade">
+        update score set GRADE=#{grade} where COUR_ID=#{courseId} and STU_ID=#{studentId}
+    </update>
+
+    <insert id="insertOne" parameterType="Grade">
+        insert into score values (#{studentId},#{courseId},#{grade})
+    </insert>
 </mapper>

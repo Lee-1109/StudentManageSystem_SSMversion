@@ -1,6 +1,7 @@
 package service;
 
 import model.Course;
+import model.Depart;
 import model.Student;
 import model.Teacher;
 
@@ -13,9 +14,7 @@ import java.util.List;
  */
 
 public interface IAdminService {
-    List<Teacher> listTeacher();
-    List<Student> listStudent();
-    List<Student> listStudentByPage(int page);
+
 
 
     //开设专业课程
@@ -28,16 +27,19 @@ public interface IAdminService {
     boolean updateCourse(Course course);
     boolean deleteTeacher(String teacherId);
     boolean deleteStudent(String studentId);
-    List<Teacher> findTeacherByCondition(String condition);
-    List<Student> findStudentByCondition(String condition);
-    List<Course> findCourseByCondition(String condition);
-    //管理员删除课程
     boolean deleteCourse(String courseId);
-    //管理员查询所有课程
+    List<Teacher> listTeacherByCondition(String condition);
+    List<Student> listStudentByCondition(String condition);
+    List<Course> listCourseByCondition(String condition);
+    List<Depart> listDepartByCondition(String condition);
     List<Course> listCourse();
+    List<Depart> listDepart();
+    List<Teacher> listTeacher();
+    List<Student> listStudent();
+    List<Student> listStudentByPage(int page);
     //通过开设专业查询课程
     List<Course> selectCourseListByMajorId(String majorId);
-    //通过学生学号查询该学生所有课程 -> 用于查询课程表
     List<Course> selectCourseListByStudentId(String studentId);
+
 
 }

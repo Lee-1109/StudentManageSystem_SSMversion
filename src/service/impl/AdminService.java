@@ -1,12 +1,15 @@
 package service.impl;
 
 import dao.ICourseDAO;
+import dao.IDepartDAO;
 import dao.IStudentDAO;
 import dao.ITeacherDAO;
 import model.Course;
+import model.Depart;
 import model.Student;
 import model.Teacher;
 import service.IAdminService;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,8 +24,12 @@ public class AdminService implements IAdminService {
     private IStudentDAO studentDAO;
     private ITeacherDAO teacherDAO;
     private ICourseDAO courseDAO;
+    private IDepartDAO departDAO;
 
-//手动注入DAO
+    public void setCourseDAO(ICourseDAO courseDAO) {
+        this.courseDAO = courseDAO;
+    }
+
     public void setStudentDAO(IStudentDAO studentDAO) {
         this.studentDAO = studentDAO;
     }
@@ -31,8 +38,8 @@ public class AdminService implements IAdminService {
         this.teacherDAO = teacherDAO;
     }
 
-    public void setCourseDAO(ICourseDAO courseDAO) {
-        this.courseDAO = courseDAO;
+    public void setDepartDAO(IDepartDAO departDAO) {
+        this.departDAO = departDAO;
     }
 
     /**
@@ -81,7 +88,14 @@ public class AdminService implements IAdminService {
 
     @Override
     public boolean addStudent(Student student) {
-        return false;
+        if(studentDAO.add(student)){
+            System.out.println("===AdminService_addStudent:"+student.getId()+student.getName()+"添加成功");
+            return true;
+        }else {
+            System.out.println("===AdminService_addStudent:"+student.getId()+student.getName()+"添加失败");
+            return false;
+        }
+
     }
 
     @Override
@@ -134,19 +148,19 @@ public class AdminService implements IAdminService {
     }
 
     @Override
-    public List<Teacher> findTeacherByCondition(String condition) {
+    public List<Teacher> listTeacherByCondition(String condition) {
         if(condition==null) condition="";
         return teacherDAO.findByCondition(condition);
     }
 
     @Override
-    public List<Student> findStudentByCondition(String condition) {
+    public List<Student> listStudentByCondition(String condition) {
         if(condition==null) condition="";
         return studentDAO.findByCondition(condition);
     }
 
     @Override
-    public List<Course> findCourseByCondition(String condition) {
+    public List<Course> listCourseByCondition(String condition) {
         if(condition==null) condition="";
         return courseDAO.findByCondition(condition);
     }
@@ -161,6 +175,8 @@ public class AdminService implements IAdminService {
         return courseDAO.selectList();
     }
 
+
+
     @Override
     public List<Course> selectCourseListByMajorId(String majorId) {
         return null;
@@ -171,4 +187,36 @@ public class AdminService implements IAdminService {
         return null;
     }
 
+
+    /**
+     * 查询所有的部门信息
+     * @return 返回部门结果集
+     */
+    @Override
+    public List<Depart> listDepart() {
+        List<Depart> departs = departDAO.selectList();
+        if(null != departs){
+            System.out.println("====adminService listDepartment ====: select list department success!");
+        }else {
+            System.out.println("====adminService listDepartment ====: select list department error:it is null!");
+        }
+        return departs;
+    }
+
+    /**
+     * 条件查询部门信息
+     * @param condition 查询条件
+     * @return 返回查询的部门列表结果集
+     */
+    @Override
+    public List<Depart> listDepartByCondition(String condition) {
+        List<Depart> departs = departDAO.selectListByCondition("%"+condition+"%");
+        if(null != departs){
+            System.out.println("====adminService listDepartment ====: select condition department success!");
+        }else {
+            System.out.println("====adminService listDepartment ====: select condition department error:it is null!");
+        }
+        return departs;
+
+    }
 }

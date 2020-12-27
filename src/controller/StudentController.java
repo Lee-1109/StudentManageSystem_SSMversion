@@ -4,10 +4,8 @@ import model.Grade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import service.IStudentService;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -42,7 +40,7 @@ public class StudentController {
             map.put("courseName",grade.getCourseName());
             map.put("courseGrade",grade.getGrade());
         }
-        return "studentFindGrade";
+        return "studentSearchGrade";
 
     }
 
@@ -53,7 +51,7 @@ public class StudentController {
         List<Grade> gradeList=null;
         if( null != (gradeList=studentService.selectGradeList(userId) )){
             map.put("gradeList",gradeList);
-            return "studentFindGrade";
+            return "studentSearchGrade";
         }
         return "";
     }

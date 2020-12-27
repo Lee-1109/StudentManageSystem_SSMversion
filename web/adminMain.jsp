@@ -14,7 +14,7 @@
 当前用户:${nowUser},管理员你好!欢迎使用南昌航空大学教务管理系统<a href="logoutController">【注销登陆】</a><hr>
 <div class="container">
     <ul>
-        <li><a href="adminFindClass.jsp">部门组织管理</a></li>
+        <li><a href="listDepartment">部门组织管理</a></li>
         <li><a href="adminListStudent">学生信息管理</a></li>
         <li><a href="listTeacher">教师信息管理</a></li>
         <li><a href="listCourse">课程信息管理</a></li>

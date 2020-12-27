@@ -13,20 +13,37 @@
         <result column="STU_GENDER" property="gender"/>
     </resultMap>
 
-    <select id="fromStudents" resultMap="students">
-        call proc_getAllStudent
+    <resultMap type="Student" id="v_students">
+        <result column="INS_ID" property="insId"/>
+        <result column="INS_NAME" property="insName"/>
+        <result column="MAJOR_ID" property="majorId"/>
+        <result column="MAJOR_NAME" property="majorName"/>
+        <result column="STU_ID" property="id"/>
+        <result column="STU_NAME" property="name"/>
+        <result column="CLASS_ID" property="classes"/>
+        <result column="STU_AGE" property="age"/>
+        <result column="STU_GENDER" property="gender"/>
+    </resultMap>
+
+    <select id="fromStudents" resultMap="v_students">
+        select * from v_student
 	</select>
     <select id="selectStudentByPage" parameterType="Map" resultMap="students">
-        select * from student limit #{startIndex},#{pageSize}
+        select STU_ID, STU_NAME, CLASS_ID, STU_AGE, STU_GENDER from student limit #{startIndex},#{pageSize}
     </select>
-    <select id="findByCondition" parameterType="String" resultMap="students">
-        select * from student s where s.STU_NAME like #{condition} or s.CLASS_ID like #{condition} or s.STU_ID like #{condition}
-        or s.STU_GENDER like #{condition}
+    <select id="findByCondition" parameterType="String" resultMap="v_students">
+        select s.INS_ID, INS_NAME, MAJOR_ID, MAJOR_NAME, CLASS_ID, STU_ID, STU_NAME, STU_AGE, STU_GENDER
+        from v_student s
+        where s.STU_NAME like #{condition} or s.CLASS_ID like #{condition} or s.STU_ID like #{condition}
+            or s.INS_NAME like #{condition}  or s.STU_GENDER like #{condition} or s.MAJOR_NAME like #{condition}
     </select>
 
     <update id="updateOneStudent" parameterType="Student">
-        update student set STU_NAME=#{name},STU_AGE=#{age},CLASS_ID=#{classes} where STU_ID=#{id}
+        update student set STU_NAME=#{name},STU_AGE=#{age},CLASS_ID=#{classes},STU_GENDER=#{gender} where STU_ID=#{id}
     </update>
+    <insert id="addStudent" parameterType="Student">
+        insert into student values (#{id},#{name},#{classes},#{age},#{gender})
+    </insert>
     <delete id="deleteOneStudent" parameterType="String">
         delete from student where STU_ID=#{studentId}
     </delete>

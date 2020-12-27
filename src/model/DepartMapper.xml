@@ -12,13 +12,22 @@
         <result column="MAJOR_NAME" property="majorName"/>
         <result column="CLASS_ID" property="classId"/>
     </resultMap>
-    <select id="fromInsMaj" resultType="Depart">
+    <select id="fromInsMaj" resultMap="deptByClass">
         select * from v_ins_maj_cla
     </select>
     <!-- 根据班级编号找到部门的详细信息 -->
     <select id="fromInsMajByClassId" parameterType="String" resultMap="deptByClass">
         call proc_GetClassInsMajor(#{classId})
 	</select>
+
+    <!--根据条件查询部门-->
+    <select id="selectByCondition" parameterType="String" resultMap="deptByClass">
+        select * from v_ins_maj_cla v where v.CLASS_ID like #{condition}
+                                         or v.MAJOR_ID like #{condition}
+                                         or v.MAJOR_NAME like #{condition}
+                                         or v.INS_NAME like #{condition}
+                                         or v.INS_ID like #{condition}
+    </select>
 
 
 </mapper>

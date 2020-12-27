@@ -27,14 +27,14 @@
         <tr>
             <td>${course.courseId}</td>
             <td>${course.courseName}</td>
-            <td><a href="#">修改</a></td>
+            <td><a href="teacherListOneCourseByClass?courseId=${course.courseId}">修改</a></td>
         </tr>
     </c:forEach>
     </table>
 </c:if>
 
 <h2>未录入课程</h2><hr>
-<c:if test="${empty enterCourseList}">
+<c:if test="${empty notEnterCourseList}">
     <h3>暂无未录入课程</h3>
 </c:if>
 <c:if test="${! empty notEnterCourseList}">
@@ -48,7 +48,7 @@
             <tr>
                 <td>${course.courseId}</td>
                 <td>${course.courseName}</td>
-                <td><a href="#">录入</a></td>
+                <td><a href="teacherListOneClass?courseId=${course.courseId}">录入</a></td>
             </tr>
         </c:forEach>
     </table>

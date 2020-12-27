@@ -2,6 +2,9 @@ package service;
 
 import model.Course;
 import model.Grade;
+import model.Student;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -11,6 +14,10 @@ import java.util.List;
  */
 
 public interface ITeacherService {
+    //获得一门课程所有的学生信息以及成绩
+    List<Grade> listOneCourseScoreByClass(String courseId, String classId, String teacherId);
+
+    List<Student> listOneClass(String classId);
     //批量录入学生成绩
     boolean addGradeList(List<Grade> gradeList);
     //修改一个学生一门课程成绩

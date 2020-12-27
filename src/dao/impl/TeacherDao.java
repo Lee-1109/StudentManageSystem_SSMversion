@@ -25,7 +25,7 @@ public class TeacherDao extends SqlSessionDaoSupport implements ITeacherDAO {
      */
     @Override
     public boolean update(Teacher teacher) {
-        return this.getSqlSession().update("",teacher) == 1 ;
+        return this.getSqlSession().update("model.Teacher.updateTeacher",teacher) == 1 ;
     }
 
     @Override

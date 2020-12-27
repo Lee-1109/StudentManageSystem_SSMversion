@@ -12,6 +12,7 @@ import java.util.List;
  */
 
 public interface IStudentDAO {
+    boolean add(Student student);
     //查询所有学生
     List<Student> selectAllStudent();
     //实现分页查询学生 数据库limit
